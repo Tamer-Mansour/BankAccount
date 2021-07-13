@@ -16,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         BankAccount bankAccount = new BankAccount(" S1_290",50,100);
-        etPrint.setText(""+bankAccount.getTotal());
+        etPrint.setText(""+bankAccount.getTOTAL_AMOUNT_OF_MONEY());
     }
 }

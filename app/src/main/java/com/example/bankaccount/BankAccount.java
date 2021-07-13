@@ -9,18 +9,20 @@ public class BankAccount {
     private double SavBal;
     private BankAccount [] acc ;
     private int size = 0;
-    private double Total = 0;
+    private double TOTAL_AMOUNT_OF_MONEY = 0;
+    private static int ACCOUNT_COUNT;
     public BankAccount(String acc_num , double check_bal , double save_bal ){
         AccNum = acc_num;
         CheckBal = check_bal;
         SavBal = save_bal;
         acc = new BankAccount[size];
+        ACCOUNT_COUNT++;
     }
 
     private void addAcc( double check_bal , double save_bal){
         Resize(acc);
         acc[size-1] = new BankAccount(Rand(),check_bal,save_bal);
-        acc[size-1].setTotal(check_bal+save_bal);
+        acc[size-1].setTOTAL_AMOUNT_OF_MONEY(check_bal+save_bal);
 
     }
     public void Resize(BankAccount [] acc){
@@ -35,11 +37,11 @@ public class BankAccount {
         int m = (int) Math.pow(10, 9);
         return Integer.toString( m + new Random().nextInt(9 * m));
     }
-    public void setTotal(double total){
-        Total = total;
+    public void setTOTAL_AMOUNT_OF_MONEY(double TOTAL_AMOUNT_OF_MONEY){
+        this.TOTAL_AMOUNT_OF_MONEY = TOTAL_AMOUNT_OF_MONEY;
     }
-    public double getTotal(){
-        return Total;
+    public double getTOTAL_AMOUNT_OF_MONEY(){
+        return TOTAL_AMOUNT_OF_MONEY;
     }
 
     public void setCheckBal(double check){
@@ -56,28 +58,26 @@ public class BankAccount {
     }
     public void Checkdeposit(double money){
         setCheckBal(getCheckBal()+ money);
-        setTotal(getTotal()+money);
+        setTOTAL_AMOUNT_OF_MONEY(getTOTAL_AMOUNT_OF_MONEY()+money);
     }
     public void Savdeposit(double money){
         setSavBal(getSavBal()+ money);
-        setTotal(getTotal()+money);
+        setTOTAL_AMOUNT_OF_MONEY(getTOTAL_AMOUNT_OF_MONEY()+money);
     }
     public void CheckWithDaw(double money){
-        if(getTotal() < money && getCheckBal() < money){
-            System.out.println("you don't have enough money");
+        if(getTOTAL_AMOUNT_OF_MONEY() < money && getCheckBal() < money){
         }
         else{
             setCheckBal(getCheckBal()- money);
-            setTotal(getTotal()-money);
+            setTOTAL_AMOUNT_OF_MONEY(getTOTAL_AMOUNT_OF_MONEY()-money);
         }
     }
     public void SavWithDaw(double money){
-        if(getTotal() < money && getSavBal() < money){
-            System.out.println("you don't have enough money");
+        if(getTOTAL_AMOUNT_OF_MONEY() < money && getSavBal() < money){
         }
         else{
             setSavBal(getSavBal()- money);
-            setTotal(getTotal()- money);
+            setTOTAL_AMOUNT_OF_MONEY(getTOTAL_AMOUNT_OF_MONEY()- money);
         }
     }
 
